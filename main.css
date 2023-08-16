@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: url(img/blurry-gradient-haikei.svg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 7rem);
+  grid-template-rows: repeat(3, 7rem);
+  justify-content: center;
+  margin-top: 5%;
+  gap: 5px;
+  background-color: rgba(0, 0, 0, 0.726);
+  width: 21rem;
+}
+img {
+  width: 5rem;
+  height: 5rem;
+}
+
+button {
+  font-size: 6rem;
+  border-radius: 5px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  cursor: pointer;
+}
+.announcer {
+  color: white;
+  z-index: 1;
+}
+
+.s11 {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+.s12 {
+  grid-row: 1 / 1;
+  grid-column: 2 / 3;
+}
+.s13 {
+  grid-row: 1 / 1;
+  grid-column: 3 / 4;
+}
+.s21 {
+  grid-row: 2 / 3;
+  grid-column: 1 / 1;
+}
+.s22 {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+.s23 {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+}
+.s31 {
+  grid-row: 3 / 4;
+  grid-column: 1 / 1;
+}
+.s32 {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+.s33 {
+  grid-row: 3 / 4;
+  grid-column: 3 / 4;
+}
