@@ -10,12 +10,12 @@ const coOrds = {
   ".s11": [0, 0],
   ".s12": [0, 1],
   ".s13": [0, 3],
-  ".s21": [0, 0],
-  ".s22": [0, 0],
-  ".s23": [0, 0],
-  ".s31": [0, 0],
-  ".s32": [0, 0],
-  ".s33": [0, 0],
+  ".s21": [1, 0],
+  ".s22": [1, 1],
+  ".s23": [1, 2],
+  ".s31": [2, 0],
+  ".s32": [2, 1],
+  ".s33": [2, 2],
 };
 
 const playerCross = 1;
@@ -26,6 +26,7 @@ const announcer = document.querySelector(".announcer");
 let turn = false;
 
 let gameOn = true;
+let counter = 0;
 
 //Joins a row to a string
 function join(row) {
@@ -46,7 +47,7 @@ function winner(player) {
   announcer.innerHTML = w + " HAS WON!!!";
 }
 
-function getCol() {
+function getCols() {
   let cols = [];
 
   for (let i = 0; i < 3; i++) {
@@ -119,7 +120,13 @@ function myFunction(el) {
       game[(a, b)] = "x";
       btn.innerHTML = '<img src="img/x-icon.png" alt="" />';
     }
+    counter++;
     turn = !turn;
+
     gameOver();
+  }
+  if (counter >= 9) {
+    // announcer.innerHTML = game;
+    console.log(game);
   }
 }
