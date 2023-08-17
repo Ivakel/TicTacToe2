@@ -1,7 +1,7 @@
 let game = [
-  ["", "", ""],
-  ["", "", ""],
-  ["", "", ""],
+  [".", ".", "."],
+  [".", ".", "."],
+  [".", ".", "."],
 ];
 
 const whichPlayer = { 0: "O", 1: "X" };
@@ -9,7 +9,7 @@ const whichPlayer = { 0: "O", 1: "X" };
 const coOrds = {
   ".s11": [0, 0],
   ".s12": [0, 1],
-  ".s13": [0, 3],
+  ".s13": [0, 2],
   ".s21": [1, 0],
   ".s22": [1, 1],
   ".s23": [1, 2],
@@ -28,12 +28,22 @@ let turn = false;
 let gameOn = true;
 let counter = 0;
 
+function getGame() {
+  let g = [];
+  for (let i = 0; i < 3; i++) {
+    let str = join(game[i]);
+    g.push(str);
+  }
+  return g;
+}
+
 //Joins a row to a string
 function join(row) {
   let r = ""; // string to append each row element
   for (let i = 0; i < 3; i++) {
     r += row[i];
   }
+  // console.log(r);
   return r;
 }
 
@@ -59,6 +69,27 @@ function getCols() {
   }
   return cols;
 }
+function getCross1() {
+  let n = 0;
+  let str = "";
+
+  while (n < 3) {
+    str += game[n][n];
+    n += 1;
+  }
+  return str;
+}
+
+function getCross2() {
+  let n = 0;
+  let str = "";
+
+  while (n < 3) {
+    str += game[2 - n][n];
+    n += 1;
+  }
+  return str;
+}
 
 function gameOver() {
   //check for each row
@@ -77,24 +108,10 @@ function gameOver() {
   }
   //check for each column and crosses
   let cols = getCols();
-  let n = 0;
-  let str = "";
-
-  while (n < 3) {
-    str += game[n][n];
-    n += 1;
-  }
-  cols.push(str);
-
-  n = 0;
-  str = "";
-
-  while (n < 3) {
-    str += game[n][2 - n];
-    n += 1;
-  }
-  cols.push(str);
-
+  console.log(getCross1());
+  cols.push(getCross1());
+  cols.push(getCross2());
+  console.log(cols);
   for (let i = 0; i < 3; i++) {
     let str = cols[i];
     if (wins.has(str)) {
@@ -109,24 +126,20 @@ function gameOver() {
 
 function myFunction(el) {
   const btn = document.querySelector("." + el.className);
-  //btn.innerHTML = '<img src="img/circle.png" alt="" />';
+
   if (btn.innerHTML === "") {
+    const [a, b] = coOrds["." + el.className];
+
     if (turn) {
-      [a, b] = coOrds["." + el.className];
-      game[(a, b)] = "o";
+      game[a][b] = "o";
       btn.innerHTML = '<img src="img/circle.png" alt="" />';
     } else {
-      [a, b] = coOrds["." + el.className];
-      game[(a, b)] = "x";
+      game[a][b] = "x";
       btn.innerHTML = '<img src="img/x-icon.png" alt="" />';
     }
     counter++;
     turn = !turn;
 
     gameOver();
-  }
-  if (counter >= 9) {
-    // announcer.innerHTML = game;
-    console.log(game);
   }
 }

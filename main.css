@@ -16,6 +16,12 @@ html {
 body {
   font-family: "Roboto", sans-serif;
   display: flex;
+
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.title {
   justify-content: center;
 }
 
