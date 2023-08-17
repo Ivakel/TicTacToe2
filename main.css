@@ -97,7 +97,7 @@ button #square {
   transition: 0.3s;
 }
 
-button #square:hover {
+.wrapper button:hover {
   cursor: pointer;
 }
 

@@ -30,6 +30,32 @@ let turn = false;
 let gameOn = true;
 let counter = 0;
 
+function getAvailMoves() {
+  let moves = [];
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (game[i][j] === ".") {
+        moves.push([i, j]);
+      }
+    }
+  }
+  return moves;
+}
+
+function draw() {}
+
+function play() {}
+
+function stupidComputer() {
+  if (counter === 9) {
+    draw();
+    return;
+  }
+  let moves = getAvailMoves();
+
+  let move = moves[Math.floor(Math.random() * moves.length)];
+}
+
 function getGame() {
   let g = [];
   for (let i = 0; i < 3; i++) {
@@ -131,7 +157,7 @@ function gameOver() {
   }
 }
 
-function myFunction(el) {
+function makeMove(el) {
   const btn = document.querySelector("." + el.className);
 
   if (btn.innerHTML === "") {
@@ -146,9 +172,13 @@ function myFunction(el) {
     }
     counter++;
     turn = !turn;
-
     gameOver();
   }
+}
+
+function myFunction(el) {
+  makeMove(el);
+  stupidComputer();
 }
 
 function resetGame() {
@@ -165,8 +195,9 @@ function resetSquare() {
     e.innerHTML = "";
   });
 }
-function replay(el) {
+function replay() {
   resetGame();
   resetSquare();
   hide();
+  turn = false;
 }
