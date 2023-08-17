@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 
 * {
   padding: 0;
@@ -23,6 +24,7 @@ body {
 
 .title {
   justify-content: center;
+  align-items: center;
 }
 
 .wrapper {
@@ -30,7 +32,7 @@ body {
   grid-template-columns: repeat(3, 7rem);
   grid-template-rows: repeat(3, 7rem);
   justify-content: center;
-  margin-top: 5%;
+  margin-top: 50%;
   gap: 5px;
   background-color: rgba(0, 0, 0, 0.726);
   width: 21rem;
@@ -40,19 +42,63 @@ img {
   height: 5rem;
 }
 
-button {
+.announcer {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+  border-radius: 15px;
+  z-index: 1;
+  background-color: hsla(216, 85%, 13%, 0.315);
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+.show-replay-btn {
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  visibility: visible;
+}
+.btn-replay {
+  width: 6rem;
+  height: 3rem;
+  margin-top: 10%;
+  margin-left: 34%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: hsla(200, 100%, 10%, 0.603);
+  border-radius: 1.5rem;
+}
+
+.btn-replay .replay {
+  width: 6rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  outline: none;
+  cursor: pointer;
+  background-color: hsla(200, 100%, 10%, 0.603);
+  color: wheat;
+  font-size: 1.3rem;
+  font-family: "Montserrat", sans-serif;
+}
+.winnner {
+  margin-top: 1rem;
+  background-color: hsla(216, 85%, 13%, 0.315);
+}
+
+button #square {
   font-size: 6rem;
   border-radius: 5px;
   background-color: white;
   transition: 0.3s;
 }
 
-button:hover {
+button #square:hover {
   cursor: pointer;
-}
-.announcer {
-  color: white;
-  z-index: 1;
 }
 
 .s11 {

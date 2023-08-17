@@ -21,6 +21,8 @@ const coOrds = {
 const playerCross = 1;
 const playerCircle = 0;
 const wins = new Set(["ooo", "xxx"]);
+const message = document.querySelector(".message");
+const winner = document.querySelector(".winnner");
 const announcer = document.querySelector(".announcer");
 
 let turn = false;
@@ -47,14 +49,18 @@ function join(row) {
   return r;
 }
 
-function winner(player) {
+function show(player) {
   let w = "";
   if (player === 1) {
-    w = "X";
+    w = '<img src="img/x-icon.png" alt="" />';
   } else {
-    w = "O";
+    w = '<img src="img/circle.png" alt="" />';
   }
-  announcer.innerHTML = w + " HAS WON!!!";
+  winner.innerHTML = w;
+  announcer.classList.add("show-replay-btn");
+}
+function hide() {
+  announcer.classList.remove("show-replay-btn");
 }
 
 function getCols() {
@@ -99,10 +105,10 @@ function gameOver() {
     if (wins.has(str)) {
       //check if someone won
       if (str === "xxx") {
-        winner(1);
+        show(1);
         return;
       }
-      winner(0);
+      show(0);
       return;
     }
   }
@@ -116,9 +122,10 @@ function gameOver() {
     let str = cols[i];
     if (wins.has(str)) {
       if (str === "xxx") {
-        winner(1);
+        show(1);
+        return;
       }
-      winner(0);
+      show(0);
       return;
     }
   }
@@ -142,4 +149,24 @@ function myFunction(el) {
 
     gameOver();
   }
+}
+
+function resetGame() {
+  game = [
+    [".", ".", "."],
+    [".", ".", "."],
+    [".", ".", "."],
+  ];
+}
+function resetSquare() {
+  const squares = document.querySelectorAll("#square");
+
+  squares.forEach((e) => {
+    e.innerHTML = "";
+  });
+}
+function replay(el) {
+  resetGame();
+  resetSquare();
+  hide();
 }
