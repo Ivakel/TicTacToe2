@@ -108,11 +108,11 @@ function gameOver() {
   }
   //check for each column and crosses
   let cols = getCols();
-  console.log(getCross1());
+
   cols.push(getCross1());
   cols.push(getCross2());
   console.log(cols);
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < cols.length; i++) {
     let str = cols[i];
     if (wins.has(str)) {
       if (str === "xxx") {
