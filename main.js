@@ -101,7 +101,7 @@ function join(row) {
 function show(player) {
   let w = "";
   if (player === 1) {
-    w = '<img src="img/x-icon.png" alt="" />';
+    w = '<img src="img/cross2.png" alt="" />';
   } else {
     w = '<img src="img/circle.png" alt="" />';
   }
@@ -192,10 +192,10 @@ function makeMove(el) {
 
     if (turn) {
       game[a][b] = "o";
-      btn.innerHTML = '<img src="img/circle.png" alt="" />';
+      btn.innerHTML = '<img src="img/circle.svg" alt="" />';
     } else {
       game[a][b] = "x";
-      btn.innerHTML = '<img src="img/x-icon.png" alt="" />';
+      btn.innerHTML = '<img src="img/cross2.png" alt="" class="circle"/>';
     }
     counter++;
     turn = !turn;
