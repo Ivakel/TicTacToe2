@@ -42,6 +42,11 @@ img {
   height: 5rem;
 }
 
+.equal {
+  width: 3rem;
+  height: 3rem;
+}
+
 .announcer {
   position: absolute;
   width: 300px;
@@ -54,9 +59,10 @@ img {
   justify-content: center;
   border-radius: 15px;
   z-index: 1;
-  background-color: hsla(216, 85%, 13%, 0.315);
+  background-color: hsl(215, 100%, 66%);
   visibility: hidden;
   transition: transform 0.4s, top 0.4s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .show-replay-btn {
@@ -87,7 +93,7 @@ img {
 }
 .winnner {
   margin-top: 1rem;
-  background-color: hsla(216, 85%, 13%, 0.315);
+  background-color: hsla(215, 85%, 13%, 0);
 }
 
 button #square {

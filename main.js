@@ -39,13 +39,20 @@ function getAvailMoves() {
       }
     }
   }
+  console.log(moves);
   return moves;
 }
 
-function draw() {}
+function draw() {
+  const equals = '<img src="img/equals.svg" alt="" class="equals"/>';
+  winner.innerHTML = equals;
+  message.innerHTML = "DRAW";
+  announcer.classList.add("show-replay-btn");
+}
 
-function play() {}
+//function play() {}
 
+//Computer that plays stupid moves
 function stupidComputer() {
   if (counter === 9) {
     draw();
@@ -54,6 +61,21 @@ function stupidComputer() {
   let moves = getAvailMoves();
 
   let move = moves[Math.floor(Math.random() * moves.length)];
+  const [a, b] = move;
+  console.log(`.${a + 1}${b + 1}`);
+
+  const btn = document.querySelector(`.s${a + 1}${b + 1}`);
+
+  if (turn) {
+    game[a][b] = "o";
+    btn.innerHTML = '<img src="img/circle.png" alt="" />';
+  } else {
+    game[a][b] = "x";
+    btn.innerHTML = '<img src="img/x-icon.png" alt="" />';
+  }
+  counter++;
+  turn = !turn;
+  gameOver();
 }
 
 function getGame() {
@@ -75,6 +97,7 @@ function join(row) {
   return r;
 }
 
+// Shows the announcer
 function show(player) {
   let w = "";
   if (player === 1) {
@@ -83,8 +106,11 @@ function show(player) {
     w = '<img src="img/circle.png" alt="" />';
   }
   winner.innerHTML = w;
+  message.innerHTML = "WON";
   announcer.classList.add("show-replay-btn");
 }
+
+//Hides the annoncer
 function hide() {
   announcer.classList.remove("show-replay-btn");
 }
@@ -123,6 +149,7 @@ function getCross2() {
   return str;
 }
 
+//Checks if there is a winner
 function gameOver() {
   //check for each row
   for (let i = 0; i < 3; i++) {
@@ -173,12 +200,18 @@ function makeMove(el) {
     counter++;
     turn = !turn;
     gameOver();
+    sleep(9000).then(() => {});
+    stupidComputer();
   }
 }
 
 function myFunction(el) {
   makeMove(el);
-  stupidComputer();
+}
+
+// Time delay
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function resetGame() {
@@ -200,4 +233,5 @@ function replay() {
   resetSquare();
   hide();
   turn = false;
+  counter = 0;
 }
