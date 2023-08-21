@@ -333,5 +333,6 @@ function replay() {
   hide();
   // message.innerHTML = "";
   turn = false;
+  message.innerHTML = "";
   counter = 0;
 }
