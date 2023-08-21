@@ -29,8 +29,104 @@ let turn = false;
 
 let gameOn = true;
 let counter = 0;
+//level of the game
+let level = 2;
+
+function miniMax(currGame, depth, turn) {
+  let moves = getAvailMoves();
+}
+
+function findWin() {
+  //for rows
+  for (let i = 0; i < 3; i++) {
+    let str = join(game[i]);
+    if (str === ".xx") {
+      return [i, 0];
+    }
+    if (str === "x.x") {
+      return [i, 1];
+    }
+    if (str === "xx.") {
+      return [i, 2];
+    }
+  }
+
+  //for columns
+  for (let i = 0; i < 3; i++) {
+    let str = "";
+    for (let j = 0; j < 3; j++) {
+      str += game[j][i];
+    }
+    if (str === ".xx") {
+      return [0, i];
+    }
+    if (str === "x.x") {
+      return [1, i];
+    }
+    if (str === "xx.") {
+      return [2, i];
+    }
+  }
+
+  //for crosses
+  let str = getCross1();
+  if (str === ".xx") {
+    return [0, 0];
+  }
+  if (str === "x.x") {
+    return [1, 1];
+  }
+  if (str === "xx.") {
+    return [2, 2];
+  }
+  str = getCross2();
+  if (str === ".xx") {
+    return [2, 0];
+  }
+  if (str === "x.x") {
+    return [1, 1];
+  }
+  if (str === "xx.") {
+    return [0, 2];
+  }
+  return [-1, -1];
+}
+
+// function avoidWinComomputer() {
+//   let [a, b] = findWin();
+//   if (a !== -1) {
+
+//   }
+// }
+
+function smartComputer() {
+  let currGame = JSON.parse(JSON.stringify(game));
+  let move = miniMax(currGame, 3, true);
+  const [a, b] = move;
+  console.log(`.${a + 1}${b + 1}`);
+
+  const btn = document.querySelector(`.s${a + 1}${b + 1}`);
+
+  if (turn) {
+    game[a][b] = "o";
+    btn.innerHTML = '<img src="img/circle.png" alt="" />';
+  } else {
+    game[a][b] = "x";
+    btn.innerHTML = '<img src="img/x-icon.png" alt="" />';
+  }
+  counter++;
+  turn = !turn;
+  gameOver();
+}
 
 function getAvailMoves() {
+  if (level === 2) {
+    move = findWin();
+    if (move[0] !== -1) {
+      return [move];
+    }
+  }
+
   let moves = [];
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
@@ -39,7 +135,6 @@ function getAvailMoves() {
       }
     }
   }
-  console.log(moves);
   return moves;
 }
 
@@ -53,8 +148,12 @@ function draw() {
 //function play() {}
 
 //Computer that plays stupid moves
-function stupidComputer() {
+function Computer() {
   if (counter === 9) {
+    gameOver();
+    if (message.innerHTML === "WON") {
+      return;
+    }
     draw();
     return;
   }
@@ -201,7 +300,7 @@ function makeMove(el) {
     turn = !turn;
     gameOver();
     sleep(9000).then(() => {});
-    stupidComputer();
+    Computer();
   }
 }
 
@@ -232,6 +331,7 @@ function replay() {
   resetGame();
   resetSquare();
   hide();
+  message.innerHTML = "";
   turn = false;
   counter = 0;
 }
