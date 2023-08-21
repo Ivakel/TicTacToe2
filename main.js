@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 let game = [
   [".", ".", "."],
   [".", ".", "."],
@@ -91,13 +93,6 @@ function findWin() {
   }
   return [-1, -1];
 }
-
-// function avoidWinComomputer() {
-//   let [a, b] = findWin();
-//   if (a !== -1) {
-
-//   }
-// }
 
 function smartComputer() {
   let currGame = JSON.parse(JSON.stringify(game));
