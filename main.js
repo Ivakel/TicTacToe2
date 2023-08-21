@@ -154,6 +154,7 @@ function Computer() {
     if (message.innerHTML === "WON") {
       return;
     }
+
     draw();
     return;
   }
@@ -161,7 +162,6 @@ function Computer() {
 
   let move = moves[Math.floor(Math.random() * moves.length)];
   const [a, b] = move;
-  console.log(`.${a + 1}${b + 1}`);
 
   const btn = document.querySelector(`.s${a + 1}${b + 1}`);
 
@@ -269,7 +269,7 @@ function gameOver() {
 
   cols.push(getCross1());
   cols.push(getCross2());
-  console.log(cols);
+
   for (let i = 0; i < cols.length; i++) {
     let str = cols[i];
     if (wins.has(str)) {
@@ -331,7 +331,7 @@ function replay() {
   resetGame();
   resetSquare();
   hide();
-  message.innerHTML = "";
+  // message.innerHTML = "";
   turn = false;
   counter = 0;
 }
