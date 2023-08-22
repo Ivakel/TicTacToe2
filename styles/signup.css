@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: url(../img/blurry-gradient-haikei.svg) no-repeat center center
+    fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.box {
+  color: white;
+
+  background-color: grey;
+  margin-top: 2rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+}
+
+input {
+  color: white;
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: white;
+}
+
+h2,
+h3 {
+  color: white;
+}
+.submit-btn {
+  background-color: grey;
+  margin-top: 3rem;
+  font-weight: 2rem;
+  height: 2rem;
+  width: 7rem;
+  border-radius: 5px;
+  margin-left: 1.95rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}

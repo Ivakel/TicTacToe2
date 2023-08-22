@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 let game = [
   [".", ".", "."],
   [".", ".", "."],
@@ -300,6 +298,7 @@ function makeMove(el) {
 }
 
 function myFunction(el) {
+  console.log("clicked");
   makeMove(el);
 }
 
