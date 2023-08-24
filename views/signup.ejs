@@ -4,24 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../img/icon3.jpg" />
-    <link rel="stylesheet" href="../styles/signup.css" />
-    <title>Signup</title>
+    <link href="/css/signup.css" rel="stylesheet" type="text/css" />
+    
+    <title>Tic-Tac Toe|login</title>
   </head>
   <body>
     <div class="wrapper">
         <div class="text">
-            <h2>SignUp</h2>
-            <h3>Enter Your Details</h1>
+            <h2>Create Your Account</h2>
+            <h3>Welcome have fun playing Tic-Tac Toe</h1>
         </div>
       
-      <form action="/signup" method="post">
+      <form action="/signup" method="POST">
+        <label for="email">Email</label>
         <input
           type="text"
           class="box"
           name="email"
-          id="name"
+          id="email"
           placeholder="user@email.com"
         />
+        <label for="username">Username</label>
         <input
           type="text"
           class="box"
@@ -29,15 +32,18 @@
           id="username"
           placeholder="username"
         />
+        <label for="password">Password</label>
         <input
           type="text"
           class="box"
           name="password"
-          id="passwork"
+          id="password"
           placeholder="********"
         />
-        <input class="submit-btn" type="submit" value="Submit" onclick="submit(this)">
+        <input class="submit-btn" type="submit" id="submit" value="Submit" onclick="submit(this)">
       </form>
+
+      <p class="login">Already have an account? <a href="login.ejs">login</a></p>
     </div>
   </body>
   <script src="../main.js"></script>

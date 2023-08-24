@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../img/icon3.jpg" />
+    <link href="/css/login.css" rel="stylesheet" type="text/css" />
+    <title>Tic-Tac Toe | login</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/login" method="post">
+        <label for="email"> Email: </label>
+        <input type="email" name="email" id="email" />
+        <label for="password"> Password: </label>
+        <input type="text" name="password" id="password" />
+        <input
+          class="submit-btn"
+          type="submit"
+          id="submit"
+          value="Submit"
+          onclick="submit(this)"
+        />
+      </form>
+    </div>
+  </body>
+</html>

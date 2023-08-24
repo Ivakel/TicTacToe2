@@ -28,41 +28,75 @@ body {
   flex-direction: column;
   justify-content: center;
   vertical-align: middle;
+  margin-top: 2%;
+}
+
+label {
+  margin-top: 1.8rem;
+  margin-bottom: -2rem;
+  color: white;
 }
 
 .box {
   color: white;
 
-  background-color: grey;
+  background-color: white;
   margin-top: 2rem;
   height: 2.5rem;
-  border-radius: 0.5rem;
 }
 
 input {
-  color: white;
+  color: grey;
 }
 
 ::placeholder {
   /* Most modern browsers support this now. */
-  color: white;
+  color: grey;
+  font-size: 1rem;
 }
 
 h2,
 h3 {
   color: white;
 }
+
+h2 {
+  display: flex;
+
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
 .submit-btn {
-  background-color: grey;
-  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(222, 237, 241);
+  margin-top: 2rem;
   font-weight: 2rem;
-  height: 2rem;
-  width: 7rem;
-  border-radius: 5px;
-  margin-left: 1.95rem;
+  height: 2.5rem;
+  width: auto;
+  color: rgb(0, 0, 0);
+  font-size: 1.3rem;
+
+  /* margin-left: 1.95rem; */
 }
 
 form {
   display: flex;
   flex-direction: column;
+}
+
+.submit-btn:hover {
+  cursor: pointer;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  color: grey;
+  margin-top: 0.8rem;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }

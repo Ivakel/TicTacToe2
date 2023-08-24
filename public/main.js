@@ -102,10 +102,10 @@ function smartComputer() {
 
   if (turn) {
     game[a][b] = "o";
-    btn.innerHTML = '<img src="img/circle.png" alt="" />';
+    btn.innerHTML = '<img src="../img/circle.png" alt="" />';
   } else {
     game[a][b] = "x";
-    btn.innerHTML = '<img src="img/x-icon.png" alt="" />';
+    btn.innerHTML = '<img src="../img/x-icon.png" alt="" />';
   }
   counter++;
   turn = !turn;
@@ -287,7 +287,7 @@ function makeMove(el) {
       btn.innerHTML = '<img src="img/circle.svg" alt="" />';
     } else {
       game[a][b] = "x";
-      btn.innerHTML = '<img src="img/cross2.png" alt="" class="circle"/>';
+      btn.innerHTML = '<img src="/img/cross2.png" alt="" class="circle"/>';
     }
     counter++;
     turn = !turn;

@@ -2,26 +2,54 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const User = require("./models/userModel");
+const bcrypt = require("bcrypt");
 
 const app = express();
 
-app.use(express.json());
+app.set("views", __dirname + "/views");
+app.use(express.static(__dirname + "/public"));
 
-const port = process.env.PORT || 5000;
+app.engine("html", require("ejs").renderFile);
+app.set("view engine", "ejs");
 
-app.get("/api/contacts", (req, res) => {
-  res.send("Get all contacts");
+// app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+const port = 5001;
+
+let users = [];
+
+//ROUTES
+app.get("/", (req, res) => {
+  res.render("index.html");
 });
 
-app.post("/api/signup", async (req, res) => {
+app.get("/login", (req, res) => {
+  res.render("login.ejs");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("signup.ejs");
+});
+
+app.post("/signup", async (req, res) => {
   try {
-    const user = await User.create(req.body);
-    res.status(200).json(user);
+    let email_ = req.body.email;
+    let username_ = req.body.username;
+    let password_ = await bcrypt.hash(req.body.password, 10);
+
+    const userData = {
+      email: email_,
+      username: username_,
+      password: password_,
+    };
+    const user = await User.create(userData);
+    // res.status(200).json(users);
+    res.redirect("/login");
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: error.message });
   }
-  // console.log(req.body);
 });
 
 mongoose.set("strictQuery", false);

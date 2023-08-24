@@ -1,4 +1,4 @@
-function miniMax(currGame, depth, turn) {
+function miniMax(currGame, turn) {
   let moves = getAvailMoves(currGame);
   const player = "";
 
@@ -8,16 +8,19 @@ function miniMax(currGame, depth, turn) {
     player = "x";
   }
 
+  const drawMoves = [];
+
+  const gameCopy = JSON.parse(JSON.stringify(currGame));
   for (let i = 0; i < moves.length; i++) {
     let [a, b] = moves[i];
-    currGame[a][b] = player;
-    let winner = gameOver(currGame);
+    gameCopy[a][b] = player;
+    let winner = gameOver(gameCopy);
 
     //check if its a draw
     if (winner === -1) {
-      if (isDraw(currGame)) {
+      if (isDraw(gameCopy)) {
         // return the bias for the draw
-        return -1;
+        // drawMoves.push([a, b]);
       }
     }
     if (winner === 0) {
@@ -25,6 +28,7 @@ function miniMax(currGame, depth, turn) {
     }
   }
 }
+
 function isDraw(currGame) {
   for (let i = 0; i < 3; i++) {
     for (let j = 0; j < 3; j++) {
