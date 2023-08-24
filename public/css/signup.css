@@ -33,7 +33,7 @@ body {
 
 label {
   margin-top: 1.8rem;
-  margin-bottom: -2rem;
+
   color: white;
 }
 
@@ -41,7 +41,7 @@ label {
   color: white;
 
   background-color: white;
-  margin-top: 2rem;
+
   height: 2.5rem;
 }
 
@@ -99,4 +99,5 @@ p {
 a {
   text-decoration: none;
   color: white;
+  margin-left: 0.2rem;
 }
