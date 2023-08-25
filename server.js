@@ -24,8 +24,16 @@ app.get("/", (req, res) => {
   res.render("index.html");
 });
 
-app.get("/login", (req, res) => {
-  res.render("login.ejs");
+app.post("/login", async (req, res) => {
+  try {
+    res.render("login.ejs");
+
+    const email_ = req.body.email;
+    const password_ = req.body.password;
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
 });
 
 app.get("/signup", (req, res) => {
@@ -44,7 +52,7 @@ app.post("/signup", async (req, res) => {
       password: password_,
     };
     const user = await User.create(userData);
-    // res.status(200).json(users);
+    res.status(200).json(users);
     res.redirect("/login");
   } catch (error) {
     console.log(error.message);
