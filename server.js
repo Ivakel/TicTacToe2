@@ -12,7 +12,7 @@ app.use(express.static(__dirname + "/public"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "ejs");
 
-// app.use(express.json());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const port = 5001;
@@ -24,20 +24,44 @@ app.get("/", (req, res) => {
   res.render("index.html");
 });
 
-app.post("/login", async (req, res) => {
-  try {
-    res.render("login.ejs");
-
-    const email_ = req.body.email;
-    const password_ = req.body.password;
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: error.message });
-  }
+app.get("/login", (req, res) => {
+  res.render("login.ejs");
 });
 
+//signup server
 app.get("/signup", (req, res) => {
   res.render("signup.ejs");
+});
+
+app.post("/login", async (req, res) => {
+  try {
+    const email = req.body.email;
+    const password = req.body.password;
+    const results = await User.find();
+    //console.log(results);
+
+    let user = null;
+    for (let i = 0; i < results.length; i++) {
+      if (results[i].email === email) {
+        const hashedPassword = results[i].password;
+        if (await bcrypt.compare(password, hashedPassword)) {
+          user = results[i];
+          break;
+        }
+      }
+    }
+
+    if (user) {
+      // the user succesfully logedin
+
+      res.redirect("/");
+    } else {
+      console.log("user not found");
+    }
+  } catch (error) {
+    // res.json({ message: error.message });
+    res.json({ message: error.message });
+  }
 });
 
 app.post("/signup", async (req, res) => {
