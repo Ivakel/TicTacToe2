@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const User = require("./models/userModel");
 const bcrypt = require("bcrypt");
+const passport = require("passport");
+const passportSetup = require("./config/passportAuth");
+const cookieSession = require("cookie-session");
 
 const app = express();
 
@@ -12,14 +15,31 @@ app.use(express.static(__dirname + "/public"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "ejs");
 
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_SESSION_KEY],
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-const port = 5001;
-
-let users = [];
+const port = process.env.PORT;
 
 //ROUTES
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile"],
+  })
+);
+app.get("/auth/google/redirect", (req, res) => {
+  res.send("redirected to this URI");
+});
+
 app.get("/", (req, res) => {
   res.render("index.html");
 });
@@ -37,23 +57,10 @@ app.post("/login", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
-    const results = await User.find();
-    //console.log(results);
-
-    let user = null;
-    for (let i = 0; i < results.length; i++) {
-      if (results[i].email === email) {
-        const hashedPassword = results[i].password;
-        if (await bcrypt.compare(password, hashedPassword)) {
-          user = results[i];
-          break;
-        }
-      }
-    }
+    const user = await User.findOne({ email: email });
 
     if (user) {
       // the user succesfully logedin
-
       res.redirect("/");
     } else {
       console.log("user not found");

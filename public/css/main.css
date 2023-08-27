@@ -18,6 +18,7 @@ html {
 body {
   font-family: "Roboto", sans-serif;
   display: flex;
+  flex-direction: column;
 
   justify-content: center;
   vertical-align: middle;
@@ -32,12 +33,54 @@ body {
   color: aliceblue;
 }
 
+.header {
+  display: flex;
+  justify-content: end;
+  margin-left: 3rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.username {
+  margin-top: 0.5rem;
+  color: #f0f8ff;
+  display: flex;
+
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.username a {
+  display: flex;
+  vertical-align: middle;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.header a {
+  text-decoration: none;
+}
+
+.profile-icon img {
+  height: 4rem;
+  width: 4rem;
+}
+
+.google-logo {
+  width: 2rem;
+  height: 2rem;
+}
+
+.container {
+  margin-left: 37%;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 7rem);
   grid-template-rows: repeat(3, 7rem);
   justify-content: center;
-  margin-top: 10%;
+  margin-top: 5%;
   gap: 5px;
   background-color: rgba(0, 0, 0, 0.726);
   width: 21rem;

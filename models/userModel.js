@@ -2,17 +2,20 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
+    googleLogin: {
+      type: Boolean,
+    },
     email: {
       type: String,
-      required: [true, "Please Enter the email."],
     },
     password: {
       type: String,
-      required: [true, "Please Enter the email."],
     },
     username: {
       type: String,
-      required: [true, "Please Enter the username."],
+    },
+    googleID: {
+      type: String,
     },
   },
   {
